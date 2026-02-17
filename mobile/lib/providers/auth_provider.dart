@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/user.dart';
 import '../models/auth_tokens.dart';
 import '../services/auth_service.dart';
@@ -21,6 +22,8 @@ class AuthProvider with ChangeNotifier {
   bool _showMfaInput = false; // Track if we should show MFA input field
 
   User? get user => _user;
+  bool get isIntroLayout => _user?.isIntroLayout ?? false;
+  bool get aiEnabled => _user?.aiEnabled ?? false;
   AuthTokens? get tokens => _tokens;
   bool get isLoading => _isLoading;
   bool get isInitializing => _isInitializing; // Expose initialization state
@@ -215,6 +218,60 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  Future<void> startSsoLogin(String provider) async {
+    _errorMessage = null;
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final deviceInfo = await _deviceService.getDeviceInfo();
+      final ssoUrl = _authService.buildSsoUrl(
+        provider: provider,
+        deviceInfo: deviceInfo,
+      );
+
+      final launched = await launchUrl(Uri.parse(ssoUrl), mode: LaunchMode.externalApplication);
+      if (!launched) {
+        _errorMessage = 'Unable to open browser for sign-in.';
+      }
+    } catch (e, stackTrace) {
+      LogService.instance.error('AuthProvider', 'SSO launch error: $e\n$stackTrace');
+      _errorMessage = 'Unable to start sign-in. Please try again.';
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<bool> handleSsoCallback(Uri uri) async {
+    _errorMessage = null;
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final result = await _authService.handleSsoCallback(uri);
+
+      if (result['success'] == true) {
+        _tokens = result['tokens'] as AuthTokens?;
+        _user = result['user'] as User?;
+        _isLoading = false;
+        notifyListeners();
+        return true;
+      } else {
+        _errorMessage = result['error'] as String?;
+        _isLoading = false;
+        notifyListeners();
+        return false;
+      }
+    } catch (e, stackTrace) {
+      LogService.instance.error('AuthProvider', 'SSO callback error: $e\n$stackTrace');
+      _errorMessage = 'Sign-in failed. Please try again.';
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
   Future<void> logout() async {
     await _authService.logout();
     _tokens = null;
@@ -264,6 +321,27 @@ class AuthProvider with ChangeNotifier {
     }
 
     return _tokens?.accessToken;
+  }
+
+  Future<bool> enableAi() async {
+    final accessToken = await getValidAccessToken();
+    if (accessToken == null) {
+      _errorMessage = 'Session expired. Please login again.';
+      notifyListeners();
+      return false;
+    }
+
+    final result = await _authService.enableAi(accessToken: accessToken);
+    if (result['success'] == true) {
+      _user = result['user'] as User?;
+      _errorMessage = null;
+      notifyListeners();
+      return true;
+    }
+
+    _errorMessage = result['error'] as String?;
+    notifyListeners();
+    return false;
   }
 
   void clearError() {
