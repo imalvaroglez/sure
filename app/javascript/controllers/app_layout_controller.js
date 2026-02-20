@@ -24,6 +24,14 @@ export default class extends Controller {
     this.#updateUserPreference("show_sidebar", !isOpen);
     this.#toggleSidebarWidth(this.leftSidebarTarget, isOpen);
 
+    if (isOpen) {
+      this._leftSidebarWidth = this.leftSidebarTarget.offsetWidth;
+      this.leftSidebarTarget.style.width = "";
+    } else {
+      const width = this._leftSidebarWidth || this.element.dataset.resizableLayoutLeftWidthValue || 280;
+      this.leftSidebarTarget.style.width = `${width}px`;
+    }
+
     if (this.hasLeftHandleTarget) {
       if (isOpen) {
         this.leftHandleTarget.classList.add("hidden");
@@ -39,6 +47,14 @@ export default class extends Controller {
     const isOpen = !this.rightSidebarTarget.classList.contains("w-0");
     this.#updateUserPreference("show_ai_sidebar", !isOpen);
     this.#toggleSidebarWidth(this.rightSidebarTarget, isOpen);
+
+    if (isOpen) {
+      this._rightSidebarWidth = this.rightSidebarTarget.offsetWidth;
+      this.rightSidebarTarget.style.width = "";
+    } else {
+      const width = this._rightSidebarWidth || this.element.dataset.resizableLayoutRightWidthValue || 280;
+      this.rightSidebarTarget.style.width = `${width}px`;
+    }
 
     if (this.hasRightHandleTarget) {
       if (isOpen) {

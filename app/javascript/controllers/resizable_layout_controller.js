@@ -32,10 +32,10 @@ export default class extends Controller {
   }
 
   #applyInitialWidths() {
-    if (this.hasLeftSidebarTarget) {
+    if (this.hasLeftSidebarTarget && !this.leftSidebarTarget.classList.contains("w-0")) {
       this.leftSidebarTarget.style.width = `${this.leftWidthValue}px`;
     }
-    if (this.hasRightSidebarTarget) {
+    if (this.hasRightSidebarTarget && !this.rightSidebarTarget.classList.contains("w-0")) {
       this.rightSidebarTarget.style.width = `${this.rightWidthValue}px`;
     }
   }
