@@ -153,17 +153,17 @@ sk:
   number:
     currency:
       format:
-        delimiter: " "
+        delimiter: ","
         format: "%n %u"
         precision: 2
-        separator: ","
+        separator: "."
         significant: false
         strip_insignificant_zeros: false
         unit: "€"
     format:
-      delimiter: " "
+      delimiter: ","
       precision: 3
-      separator: ","
+      separator: "."
       significant: false
       strip_insignificant_zeros: false
     human:
@@ -194,7 +194,7 @@ sk:
           tb: TB
     percentage:
       format:
-        delimiter: " "
+        delimiter: ","
     precision:
       format:
         delimiter: ''

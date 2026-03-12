@@ -45,6 +45,14 @@
 - DOM manipulation: Use Stimulus targets and actions over direct DOM queries where possible.
 
 ## Testing Guidelines
+- **Test-Driven Development (TDD)**: All feature development and bug fixes MUST follow TDD practices:
+  1. Write the test first - Before implementing any change, write a failing test that describes the expected behavior
+  2. Run the test - Confirm it fails for the right reason
+  3. Write minimal code - Implement only enough code to make the test pass
+  4. Refactor - Clean up the code while keeping tests green
+  5. Repeat - Continue this cycle for each small piece of functionality
+  
+  **Exceptions:** Configuration changes, documentation updates, non-functional changes (formatting, comments), and emergency hotfixes (tests should be added afterward).
 - Framework: Minitest (Rails). Name files `*_test.rb` and mirror `app/` structure.
 - Run: `bin/rails test` locally and ensure green before pushing.
 - Fixtures: Use `test/fixtures` (all fixtures auto-loaded with `fixtures :all`).

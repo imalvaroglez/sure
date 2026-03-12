@@ -22,8 +22,8 @@ eur:
   minor_unit: Cent
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 gbp:
@@ -92,8 +92,8 @@ byr:
   minor_unit:
   minor_unit_conversion: 1
   smallest_denomination: 100
-  separator: ","
-  delimiter: " "
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 0
 sar:
@@ -162,8 +162,8 @@ sek:
   minor_unit: Öre
   minor_unit_conversion: 100
   smallest_denomination: 100
-  separator: ","
-  delimiter: " "
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 2
 sgd:
@@ -428,8 +428,8 @@ mzn:
   minor_unit: Centavo
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 nad:
@@ -484,8 +484,8 @@ nok:
   minor_unit: Øre
   minor_unit_conversion: 100
   smallest_denomination: 100
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 2
 npr:
@@ -554,8 +554,8 @@ pen:
   minor_unit: Céntimo
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 pgk:
@@ -610,8 +610,8 @@ pln:
   minor_unit: Grosz
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: " "
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 2
 pyg:
@@ -652,8 +652,8 @@ ron:
   minor_unit: Bani
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 2
 rsd:
@@ -680,8 +680,8 @@ rub:
   minor_unit: Kopeck
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 2
 rwf:
@@ -834,8 +834,8 @@ zar:
   minor_unit: Cent
   minor_unit_conversion: 100
   smallest_denomination: 10
-  separator: ","
-  delimiter: " "
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 zmk:
@@ -1058,8 +1058,8 @@ try:
   minor_unit: kuruş
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 ttd:
@@ -1142,8 +1142,8 @@ uyu:
   minor_unit: Centésimo
   minor_unit_conversion: 100
   smallest_denomination: 100
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 uzs:
@@ -1170,8 +1170,8 @@ ves:
   minor_unit: Céntimo
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 vnd:
@@ -1184,8 +1184,8 @@ vnd:
   minor_unit: Hào
   minor_unit_conversion: 1
   smallest_denomination: 100
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 0
 vuv:
@@ -1296,8 +1296,8 @@ byn:
   minor_unit: Kapeyka
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: " "
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 2
 bzd:
@@ -1352,8 +1352,8 @@ clf:
   minor_unit: Peso
   minor_unit_conversion: 10000
   smallest_denomination:
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 4
 clp:
@@ -1366,8 +1366,8 @@ clp:
   minor_unit: Peso
   minor_unit_conversion: 1
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 0
 cny:
@@ -1394,8 +1394,8 @@ cop:
   minor_unit: Centavo
   minor_unit_conversion: 100
   smallest_denomination: 20
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 crc:
@@ -1408,8 +1408,8 @@ crc:
   minor_unit: Céntimo
   minor_unit_conversion: 100
   smallest_denomination: 500
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 cuc:
@@ -1464,8 +1464,8 @@ czk:
   minor_unit: Haléř
   minor_unit_conversion: 100
   smallest_denomination: 100
-  separator: ","
-  delimiter: " "
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 2
 djf:
@@ -1492,8 +1492,8 @@ dkk:
   minor_unit: Øre
   minor_unit_conversion: 100
   smallest_denomination: 50
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 2
 dop:
@@ -1660,8 +1660,8 @@ ang:
   minor_unit: Cent
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 aoa:
@@ -1688,8 +1688,8 @@ ars:
   minor_unit: Centavo
   minor_unit_conversion: 100
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 awg:
@@ -1856,8 +1856,8 @@ brl:
   minor_unit: Centavo
   minor_unit_conversion: 100
   smallest_denomination: 5
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 bsd:
@@ -2360,8 +2360,8 @@ huf:
   minor_unit: ""
   minor_unit_conversion: 1
   smallest_denomination: 5
-  separator: ","
-  delimiter: " "
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 0
 idr:
@@ -2374,8 +2374,8 @@ idr:
   minor_unit: Sen
   minor_unit_conversion: 100
   smallest_denomination: 5000
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%u%n"
   default_precision: 2
 ils:
@@ -2444,8 +2444,8 @@ isk:
   minor_unit:
   minor_unit_conversion: 1
   smallest_denomination: 1
-  separator: ","
-  delimiter: "."
+  separator: "."
+  delimiter: ","
   default_format: "%n %u"
   default_precision: 0
 jmd:

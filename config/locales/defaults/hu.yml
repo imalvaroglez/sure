@@ -141,14 +141,14 @@ hu:
         delimiter: ''
         format: "%n %u"
         precision: 0
-        separator: ","
+        separator: "."
         significant: true
         strip_insignificant_zeros: true
         unit: Ft
     format:
-      delimiter: " "
+      delimiter: ","
       precision: 2
-      separator: ","
+      separator: "."
       significant: true
       strip_insignificant_zeros: true
     human:

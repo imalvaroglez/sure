@@ -39,36 +39,6 @@ module Money::Formatting
     end
 
     def locale_options(locale)
-      locale_sym = (locale || I18n.locale || :en).to_sym
-
-      # French locale: uses non-breaking spaces (unique formatting)
-      if locale_sym == :fr
-        return { delimiter: "\u00A0", separator: ",", format: "%n\u00A0%u" }
-      end
-
-      # European style: dot delimiter, comma separator, symbol after number
-      if EUROPEAN_SYMBOL_AFTER.include?(locale_sym)
-        return { delimiter: ".", separator: ",", format: "%n %u" }
-      end
-
-      # Space delimiter, comma separator, symbol after number
-      if SPACE_DELIMITER_SYMBOL_AFTER.include?(locale_sym)
-        return { delimiter: " ", separator: ",", format: "%n %u" }
-      end
-
-      # European style: dot delimiter, comma separator, symbol before number
-      if EUROPEAN_SYMBOL_BEFORE.include?(locale_sym)
-        return { delimiter: ".", separator: ",", format: "%u %n" }
-      end
-
-      # Currency-specific overrides for remaining locales
-      case [ currency.iso_code, locale_sym ]
-      when [ "EUR", :pt ]
-        { delimiter: ".", separator: ",", format: "%u %n" }
-      when [ "EUR", :en ], [ "EUR", :en_IE ]
-        { delimiter: ",", separator: "." }
-      else
-        {}
-      end
+      {}
     end
 end

@@ -144,7 +144,7 @@ mn:
   number:
     currency:
       format:
-        delimiter: " "
+        delimiter: ","
         format: "%n %u"
         precision: 2
         separator: "."
@@ -152,7 +152,7 @@ mn:
         strip_insignificant_zeros: false
         unit: төг.
     format:
-      delimiter: " "
+      delimiter: ","
       precision: 3
       separator: "."
       significant: false
