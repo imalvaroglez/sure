@@ -55,8 +55,6 @@ spec:
             - "/etc/pipelock/pipelock.yaml"
             - "--listen"
             - "0.0.0.0:{{ $fwdPort }}"
-            - "--mode"
-            - {{ .Values.pipelock.mode | default "balanced" | quote }}
             - "--mcp-listen"
             - "0.0.0.0:{{ $mcpPort }}"
             - "--mcp-upstream"
@@ -98,4 +96,6 @@ spec:
         {{- toYaml (.Values.pipelock.affinity | default dict) | nindent 8 }}
       tolerations:
         {{- toYaml (.Values.pipelock.tolerations | default list) | nindent 8 }}
+      topologySpreadConstraints:
+        {{- toYaml (.Values.pipelock.topologySpreadConstraints | default (list)) | nindent 8 }}
 {{- end }}
