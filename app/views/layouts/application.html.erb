@@ -17,7 +17,7 @@ end %>
 
 <% desktop_nav_items = mobile_nav_items.reject { |item| item[:mobile_only] } %>
 <% expanded_sidebar_class = "w-full" %>
-<% collapsed_sidebar_class = "w-0" %>
+<% collapsed_sidebar_class = "w-0 overflow-hidden" %>
 
 <%= render "layouts/shared/htmldoc" do %>
   <div
@@ -57,12 +57,24 @@ end %>
         <%= image_tag "logomark-color.svg", class: "w-9 h-9 mx-auto" %>
       <% end %>
 
-      <%= render "users/user_menu", user: Current.user, placement: "bottom-end", offset: 12, intro_mode: intro_mode %>
+      <div class="flex items-center gap-1">
+        <button type="button"
+                class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-secondary hover:text-primary transition-colors"
+                data-action="click->privacy-mode#toggle"
+                data-privacy-mode-target="toggle"
+                title="<%= t("layouts.application.privacy_mode") %>"
+                aria-label="<%= t("layouts.application.privacy_mode") %>"
+                aria-pressed="false">
+          <%= icon("eye-off", size: "sm", data: { privacy_mode_target: "iconOff" }) %>
+          <%= icon("eye", size: "sm", class: "hidden", data: { privacy_mode_target: "iconOn" }) %>
+        </button>
+        <%= render "users/user_menu", user: Current.user, placement: "bottom-end", offset: 12, intro_mode: intro_mode %>
+      </div>
     </nav>
 
     <%# DESKTOP - Left navbar %>
-    <div class="hidden lg:block">
-      <nav class="h-full flex flex-col shrink-0 w-[84px] py-4 mr-3">
+    <div class="hidden lg:block border-r border-divider">
+      <nav class="h-full flex flex-col shrink-0 w-[84px] py-4">
         <div class="pl-2 mb-3">
           <%= link_to home_path, class: "block" do %>
             <%= image_tag "logomark-color.svg", class: "w-9 h-9 mx-auto" %>
@@ -127,8 +139,8 @@ end %>
               </div>
             </div>
           <% end %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     <% end %>
 
     <%# Left resize handle - visible only when left sidebar is expanded %>
@@ -160,7 +172,21 @@ end %>
               <%= render "layouts/shared/breadcrumbs", breadcrumbs: @breadcrumbs %>
             <% end %>
           </div>
-          <%= icon("panel-right", as_button: true, data: { action: "app-layout#toggleRightSidebar" }) %>
+
+          <div class="flex items-center gap-2">
+            <button type="button"
+                    class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-secondary hover:text-primary hover:bg-surface-hover transition-colors"
+                    data-action="click->privacy-mode#toggle"
+                    data-privacy-mode-target="toggle"
+                    title="<%= t("layouts.application.privacy_mode") %>"
+                    aria-label="<%= t("layouts.application.privacy_mode") %>"
+                    aria-pressed="false">
+              <%= icon("eye-off", size: "sm", data: { privacy_mode_target: "iconOff" }) %>
+              <%= icon("eye", size: "sm", class: "hidden", data: { privacy_mode_target: "iconOn" }) %>
+            </button>
+
+            <%= icon("panel-right", as_button: true, data: { action: "app-layout#toggleRightSidebar" }) %>
+          </div>
         </div>
       <% end %>
 
@@ -204,7 +230,7 @@ end %>
         </div>
 
         <% unless Current.user.ai_enabled? %>
-          <div class="absolute backdrop-blur-lg inset-0 h-full w-full flex flex-col justify-center items-center pl-0.5 pr-4">
+          <div class="absolute backdrop-blur-lg inset-0 h-full w-full flex flex-col justify-center items-center px-4">
             <%= render "chats/ai_consent" %>
           </div>
         <% end %>

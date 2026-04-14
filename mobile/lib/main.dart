@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'providers/accounts_provider.dart';
+import 'providers/categories_provider.dart';
 import 'providers/transactions_provider.dart';
 import 'providers/chat_provider.dart';
+import 'providers/theme_provider.dart';
 import 'screens/backend_config_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/main_navigation_screen.dart';
@@ -35,6 +37,8 @@ class SureApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ConnectivityService()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ChatProvider()),
+        ChangeNotifierProvider(create: (_) => CategoriesProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProxyProvider<ConnectivityService, AccountsProvider>(
           create: (_) => AccountsProvider(),
           update: (_, connectivityService, accountsProvider) {
@@ -62,7 +66,8 @@ class SureApp extends StatelessWidget {
           },
         ),
       ],
-      child: MaterialApp(
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, _) => MaterialApp(
         title: 'Sure Finances',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -139,14 +144,14 @@ class SureApp extends StatelessWidget {
             ),
           ),
         ),
-        themeMode: ThemeMode.system,
+        themeMode: themeProvider.themeMode,
         routes: {
           '/config': (context) => const BackendConfigScreen(),
           '/login': (context) => const LoginScreen(),
           '/home': (context) => const MainNavigationScreen(),
         },
         home: const AppWrapper(),
-      ),
+      )),
     );
   }
 }

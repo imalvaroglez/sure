@@ -1,14 +1,18 @@
 class IncomeStatement::Totals
-  def initialize(family, transactions_scope:, date_range:, include_trades: true)
+  def initialize(family, transactions_scope:, date_range:, include_trades: true, included_account_ids: nil)
     @family = family
     @transactions_scope = transactions_scope
     @date_range = date_range
     @include_trades = include_trades
+    @included_account_ids = included_account_ids
 
     validate_date_range!
   end
 
   def call
+    # No finance accounts means no transactions to report
+    return [] if @included_account_ids&.empty?
+
     ActiveRecord::Base.connection.select_all(query_sql).map do |row|
       TotalsRow.new(
         parent_category_id: row["parent_category_id"],
@@ -133,6 +137,9 @@ class IncomeStatement::Totals
       ids = @family.tax_advantaged_account_ids
       params[:tax_advantaged_account_ids] = ids if ids.present?
 
+      # Add included account IDs for per-user finance scoping
+      params[:included_account_ids] = @included_account_ids if @included_account_ids
+
       params
     end
 
@@ -142,6 +149,12 @@ class IncomeStatement::Totals
       ids = @family.tax_advantaged_account_ids
       return "" if ids.empty?
       "AND a.id NOT IN (:tax_advantaged_account_ids)"
+    end
+
+    # Returns SQL clause to filter to only accounts included in the user's finances.
+    def include_finance_accounts_sql
+      return "" if @included_account_ids.nil?
+      "AND a.id IN (:included_account_ids)"
     end
 
     def budget_excluded_kinds_sql

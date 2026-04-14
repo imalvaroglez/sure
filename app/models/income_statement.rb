@@ -5,10 +5,11 @@ class IncomeStatement
 
   monetize :median_expense, :median_income
 
-  attr_reader :family
+  attr_reader :family, :user
 
-  def initialize(family)
+  def initialize(family, user: nil)
     @family = family
+    @user = user || Current.user
   end
 
   def totals(transactions_scope: nil, date_range:)
