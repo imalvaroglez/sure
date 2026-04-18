@@ -63,8 +63,10 @@ Sidekiq.configure_server do |config|
   config.on(:startup) do
     AutoSyncScheduler.sync!
     Rails.logger.info("[AutoSyncScheduler] Initialized sync_all_accounts cron job")
+    StatementInboxScheduler.sync!
+    Rails.logger.info("[StatementInboxScheduler] Initialized statement inbox cron job")
   rescue => e
-    Rails.logger.error("[AutoSyncScheduler] Failed to initialize: #{e.message}")
+    Rails.logger.error("[Sidekiq Startup] Failed to initialize schedulers: #{e.message}")
   end
 end
 

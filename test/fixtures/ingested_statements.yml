@@ -1,0 +1,19 @@
+ingested_one:
+  family: dylan_family
+  import: pdf
+  file_hash: "abc123def456"
+  original_filename: "statement_202601.pdf"
+  file_size: 1024000
+  source_path: "/tmp/statements/statement_202601.pdf"
+  status: ingested
+  ingested_at: <%= Time.current %>
+
+failed_one:
+  family: dylan_family
+  file_hash: "fail789"
+  original_filename: "corrupt.pdf"
+  file_size: 500
+  source_path: "/tmp/statements/corrupt.pdf"
+  status: failed
+  error_message: "File could not be read"
+  ingested_at: <%= Time.current %>
