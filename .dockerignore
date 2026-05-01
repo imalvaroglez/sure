@@ -34,7 +34,7 @@
 # Ignore assets.
 /node_modules/
 /app/assets/builds/*
-!/app/assets/builds/.keep
+! /app/assets/builds/.keep
 /public/assets
 
 # Ignore CI service files.
@@ -43,3 +43,12 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
+
+# Ignore the persistent data directory
+data/
+
+# Also ignore these to keep your builds fast
+.git
+node_modules/
+log/
+tmp/
